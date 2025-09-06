@@ -1,19 +1,7 @@
-# Cloudflare Pages Configuration
 name = "yoto-playlist-creator-web"
-compatibility_date = "2024-01-01"
+main = "src/worker.js"
+compatibility_date = "2025-09-05"
 
-[env.production.build]
-command = "npm run build"
-cwd = ""
-
-[env.production.build.upload]
-format = "directory"
-dir = "./dist"
-
-[env.preview.build]
-command = "npm run build"
-cwd = ""
-
-[env.preview.build.upload]
-format = "directory"
-dir = "./dist"
+[assets]
+directory = "./dist/"
+not_found_handling = "single-page-application"

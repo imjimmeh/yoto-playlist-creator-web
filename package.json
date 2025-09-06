@@ -8,8 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:static": "tsc -b && vite build && echo 'Static build complete. Deploy the dist/ directory to your web server.'",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=yoto-playlist-creator-web",
-    "deploy:preview": "npm run build && wrangler pages deploy dist --project-name=yoto-playlist-creator-web --compatibility-date=2024-01-01",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:preview": "npm run build && wrangler deploy --env preview",
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "vite preview --port 4173 --host",
@@ -27,6 +27,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@cloudflare/kv-asset-handler": "^0.4.0",
     "@eslint/js": "^9.33.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
