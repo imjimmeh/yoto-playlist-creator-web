@@ -1,0 +1,85 @@
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+  font-size: var(--font-size-sm);
+}
+
+.label-text {
+  flex: 1;
+}
+
+.label-badge {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.label-badge.required {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--red-700);
+}
+
+.label-badge.optional {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--gray-600);
+}
+
+.label-badge.advanced {
+  background: rgba(147, 51, 234, 0.1);
+  color: var(--purple-700);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+  background: var(--white);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.form-input:disabled {
+  background: var(--gray-50);
+  color: var(--gray-500);
+  cursor: not-allowed;
+}
+
+.form-input::placeholder {
+  color: var(--gray-400);
+}
+
+.token-input-wrapper {
+  position: relative;
+}
+
+.input-help {
+  margin-top: var(--space-2);
+}
+
+.help-text {
+  color: var(--gray-600);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}

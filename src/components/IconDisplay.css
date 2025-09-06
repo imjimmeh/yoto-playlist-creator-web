@@ -1,0 +1,285 @@
+/* Base Icon Display Styles */
+.icon-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.icon-display--clickable {
+  cursor: pointer;
+}
+
+/* Size Variants */
+.icon-display--small .icon-display__image-container {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-display--medium .icon-display__image-container {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-display--large .icon-display__image-container {
+  width: 48px;
+  height: 48px;
+}
+
+/* Variant Styles - Grid (for icon picker modal) */
+.icon-display--grid {
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
+}
+
+.icon-display--grid.icon-display--clickable:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.icon-display--grid.icon-display--clickable:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.icon-display--grid.icon-display--selected {
+  border-color: #28a745;
+  background: #f8fff9;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+}
+
+.icon-display--grid.icon-display--highlighted {
+  border-color: #ffc107;
+  background: #fffdf5;
+}
+
+/* Variant Styles - Card (for custom icons page) */
+.icon-display--card {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Variant Styles - Selector (for track icon selector) */
+.icon-display--selector {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image Container */
+.icon-display__image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.icon-display--card .icon-display__image-container {
+  margin-bottom: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.icon-display--selector .icon-display__image-container {
+  margin-bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Image */
+.icon-display__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.icon-display--selector .icon-display__image {
+  object-fit: contain;
+}
+
+/* Loading and Error States */
+.icon-display__loading {
+  font-size: 20px;
+  color: #666;
+}
+
+.icon-display__error {
+  font-size: 20px;
+  color: #dc3545;
+}
+
+.icon-display--small .icon-display__loading,
+.icon-display--small .icon-display__error {
+  font-size: 12px;
+}
+
+.icon-display--large .icon-display__loading,
+.icon-display--large .icon-display__error {
+  font-size: 24px;
+}
+
+/* Selected Overlay */
+.icon-display__selected-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(40, 167, 69, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.icon-display__checkmark {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.icon-display--small .icon-display__checkmark {
+  font-size: 12px;
+}
+
+.icon-display--large .icon-display__checkmark {
+  font-size: 24px;
+}
+
+/* Custom Badge */
+.icon-display__custom-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ffc107;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.icon-display--small .icon-display__custom-badge {
+  width: 12px;
+  height: 12px;
+  font-size: 8px;
+  top: -2px;
+  right: -2px;
+}
+
+.icon-display--large .icon-display__custom-badge {
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  top: -6px;
+  right: -6px;
+}
+
+/* Info Section */
+.icon-display__info {
+  text-align: center;
+  width: 100%;
+}
+
+.icon-display__title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.icon-display--large .icon-display__title {
+  font-size: 14px;
+}
+
+.icon-display--small .icon-display__title {
+  font-size: 10px;
+}
+
+/* Tags */
+.icon-display__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-display__tag {
+  font-size: 10px;
+  background: #e9ecef;
+  color: #495057;
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.icon-display--small .icon-display__tag {
+  font-size: 8px;
+  padding: 1px 2px;
+}
+
+.icon-display--large .icon-display__tag {
+  font-size: 12px;
+  padding: 2px 6px;
+}
+
+.icon-display__tag-more {
+  font-size: 10px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.icon-display--small .icon-display__tag-more {
+  font-size: 8px;
+}
+
+.icon-display--large .icon-display__tag-more {
+  font-size: 12px;
+}
+
+/* Responsive adjustments for grid variant */
+@media (max-width: 768px) {
+  .icon-display--grid {
+    padding: 8px;
+  }
+  
+  .icon-display--grid .icon-display__title {
+    font-size: 11px;
+  }
+  
+  .icon-display--grid .icon-display__tag {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-display--grid {
+    padding: 6px;
+  }
+}

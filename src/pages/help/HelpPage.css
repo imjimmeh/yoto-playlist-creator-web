@@ -1,0 +1,29 @@
+.help-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.help-page h1,
+.help-page h2 {
+  color: var(--primary-color);
+}
+
+.help-page section {
+  margin-bottom: 2rem;
+}
+
+.help-page ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.help-page a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.help-page a:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}

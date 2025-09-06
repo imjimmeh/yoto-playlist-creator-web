@@ -1,0 +1,355 @@
+.job-queue-page {
+  padding: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.job-queue-page .page-header {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.job-queue-page .page-header h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.job-queue-page .page-header p {
+  font-size: var(--font-size-base);
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-600);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--gray-800);
+}
+
+.tab.active {
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content {
+  min-height: 300px;
+}
+
+.job-history-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-4);
+}
+
+.clear-history-button {
+  background: linear-gradient(
+    135deg,
+    var(--error-color),
+    var(--error-color-dark)
+  );
+  color: white;
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.clear-history-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.clear-history-button:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.job-queue-list,
+.job-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.job-queue-item,
+.job-history-item {
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-200);
+  padding: var(--space-5);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.job-queue-item:hover,
+.job-history-item:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gray-300);
+  transform: translateY(-2px);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.job-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  color: var(--gray-800);
+}
+
+.job-status-icon {
+  font-size: var(--font-size-xl);
+}
+
+.job-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+}
+
+.job-position {
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
+  background: var(--gray-50);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.job-actions {
+  display: flex;
+  align-items: center;
+}
+
+.cancel-job-button {
+  background: linear-gradient(
+    135deg,
+    var(--error-color),
+    var(--error-color-dark)
+  );
+  color: white;
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.cancel-job-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.cancel-job-button:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.current-job-section {
+  margin-bottom: var(--space-6);
+}
+
+.current-job-section h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-800);
+  margin-bottom: var(--space-3);
+}
+
+.current-job {
+  border: 2px solid var(--primary-color);
+  background: var(--primary-bg);
+}
+
+.job-progress {
+  margin: var(--space-4) 0;
+}
+
+/* Progress bar styles now handled by ProgressBar component */
+.progress-bar-container.job-item-progress-text {
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+  margin-bottom: var(--space-2);
+}
+
+.job-timestamp {
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
+  background: var(--gray-50);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.job-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.job-status,
+.job-error {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.status-label,
+.error-label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.status-value {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  text-transform: capitalize;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  display: inline-block;
+  width: fit-content;
+}
+
+.status-completed .status-value {
+  color: var(--success-color-dark);
+  background: var(--success-bg);
+  border: 1px solid var(--success-color);
+}
+
+.status-failed .status-value,
+.status-cancelled .status-value {
+  color: var(--error-color-dark);
+  background: var(--error-bg);
+  border: 1px solid var(--error-color);
+}
+
+.error-message {
+  font-size: var(--font-size-sm);
+  color: var(--error-color);
+  word-break: break-word;
+  background: var(--error-bg);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--error-color);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  border: 1px dashed var(--gray-300);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.empty-icon {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  color: var(--gray-400);
+}
+
+.empty-state h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-800);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state p {
+  font-size: var(--font-size-base);
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.loading {
+  text-align: center;
+  padding: var(--space-12);
+  font-size: var(--font-size-base);
+  color: var(--gray-600);
+}
+
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--gray-300);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  margin-left: var(--space-3);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.job-type-badge {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--primary-bg);
+  color: var(--primary-color-dark);
+  border: 1px solid var(--primary-color);
+  white-space: nowrap;
+}

@@ -1,0 +1,104 @@
+.track-icon-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.track-icon-selector.small .icon-selector-button {
+  width: 24px;
+  height: 24px;
+}
+
+.track-icon-selector.medium .icon-selector-button {
+  width: 32px;
+  height: 32px;
+}
+
+.track-icon-selector.large .icon-selector-button {
+  width: 48px;
+  height: 48px;
+}
+
+.icon-selector-button {
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.icon-selector-button:hover:not(:disabled) {
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.icon-selector-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  border-color: #ccc;
+}
+
+.current-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-icon .track-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.current-icon .track-icon img,
+.current-icon .track-icon .default-icon,
+.current-icon .track-icon .loading-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+}
+
+.change-icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.icon-selector-button:hover:not(:disabled) .change-icon-overlay {
+  opacity: 1;
+}
+
+.change-icon-text {
+  color: white;
+  font-size: 12px;
+}
+
+.track-icon-selector.disabled {
+  opacity: 0.7;
+}
+
+.track-icon-selector.disabled .icon-selector-button {
+  cursor: default;
+  border-color: #eee;
+}
+
+.track-icon-selector.disabled .change-icon-overlay {
+  display: none;
+}

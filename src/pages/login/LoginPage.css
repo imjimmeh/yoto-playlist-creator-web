@@ -1,0 +1,250 @@
+.login-page {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  z-index: 100;
+}
+
+.login-page.authenticated {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+}
+
+.login-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.login-header h1 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.login-header p {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.login-subtitle {
+  margin-top: 20px !important;
+  margin-bottom: 30px !important;
+  font-weight: 500;
+  color: #555;
+}
+
+.app-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.feature-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.login-form {
+  margin-bottom: 30px;
+}
+
+.error-message {
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #c33;
+  font-size: 14px;
+  text-align: left;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #cbd5e0;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+}
+
+.btn-large {
+  font-size: 18px;
+  padding: 16px 32px;
+  min-height: 56px;
+}
+
+.auth-flow-instructions {
+  text-align: left;
+}
+
+.instruction-step h3 {
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.instruction-step p {
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.instruction-step ol {
+  color: #666;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.instruction-step li {
+  margin-bottom: 8px;
+}
+
+.loading-message {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f7fafc;
+  border-radius: 6px;
+  color: #4a5568;
+  font-style: italic;
+}
+
+.login-footer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+.protected-route-loading,
+.protected-route-unauthorized {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loading-container,
+.unauthorized-container {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.unauthorized-container h2 {
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.unauthorized-container p {
+  color: #666;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.unauthorized-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Update navbar for logout button */
+.logout-btn {
+  background: transparent !important;
+  border: 1px solid currentColor !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  min-height: auto !important;
+}
+
+.logout-btn:hover {
+  background: currentColor !important;
+  color: white !important;
+}

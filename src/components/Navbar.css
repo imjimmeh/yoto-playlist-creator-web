@@ -1,0 +1,128 @@
+.navbar {
+  background: linear-gradient(135deg, var(--white), var(--gray-50));
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.navbar-brand h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar-brand h1::before {
+  content: "🎵";
+  font-size: var(--font-size-3xl);
+}
+
+.navbar-links {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  text-decoration: none;
+  color: var(--gray-600);
+  background-color: transparent;
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  border: 2px solid rgba(10, 10, 10, 10%);
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+
+.nav-link:hover {
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-link.active {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--primary-color);
+}
+
+.nav-link.active:hover {
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark),
+    var(--primary-color)
+  );
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.nav-icon {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+}
+
+.nav-link.active .nav-icon {
+  opacity: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column;
+    gap: var(--space-4);
+    position: static;
+  }
+
+  .navbar-brand h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .navbar-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    flex: 1;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    min-width: 100px;
+  }
+}

@@ -1,0 +1,211 @@
+.creation-status-toast {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: 350px;
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--gray-200);
+  z-index: 1000;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.creation-status-toast.minimized {
+  height: auto;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.creation-status-toast.error {
+  border-color: var(--error-color);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.toast-header h4 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-800);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.toast-header h4::before {
+  content: "🎵";
+}
+
+.creation-status-toast.error .toast-header h4::before {
+  content: "⚠️";
+}
+
+.toast-controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.minimize-btn,
+.dismiss-btn {
+  background: none;
+  border: none;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  color: var(--gray-500);
+  padding: var(--space-1);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.minimize-btn:hover,
+.dismiss-btn:hover {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.toast-body {
+  padding: var(--space-4);
+}
+
+.current-job-status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.job-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: var(--font-weight-medium);
+}
+
+.job-icon {
+  font-size: var(--font-size-lg);
+}
+
+.job-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--font-weight-semibold);
+}
+
+.job-progress-status {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  min-height: 20px;
+}
+
+.detailed-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.current-file {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: var(--gray-50);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-bar-container {
+  position: relative;
+  background: var(--gray-200);
+  border-radius: var(--radius-lg);
+  height: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: var(--radius-lg);
+  transition: width var(--transition-base);
+  box-shadow: 0 1px 2px rgba(255, 107, 53, 0.3);
+}
+
+.queue-info {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--gray-200);
+}
+
+.queue-info p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
+  text-align: center;
+}
+
+.toast-footer {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--gray-200);
+}
+
+.toast-footer .info-text {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Animation for progress bar */
+@keyframes progress-pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.progress-bar:not(.completed) {
+  animation: progress-pulse 2s infinite;
+}

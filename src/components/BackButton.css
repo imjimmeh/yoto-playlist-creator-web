@@ -1,0 +1,45 @@
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 0;
+}
+
+.back-button:hover {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  color: grey;
+}
+
+.back-button:active {
+  transform: translateX(-1px) translateY(1px);
+}
+
+.back-button:hover .back-arrow {
+  transform: translateX(-3px);
+}
+
+.back-arrow {
+  font-size: 1.1em;
+  transition: transform 0.2s ease;
+}
+
+.back-button.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.back-button.page-back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}

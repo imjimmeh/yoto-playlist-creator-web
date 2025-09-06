@@ -1,0 +1,183 @@
+.file-list-container {
+  margin-top: var(--space-6);
+  background: var(--white);
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+.file-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.file-list-container h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-800);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.total-size {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  background: var(--gray-100);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+}
+
+.file-list-container h3::before {
+  content: "🎵";
+  font-size: var(--font-size-2xl);
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+}
+
+.file-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.file-list::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+}
+
+.file-list::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: var(--radius-sm);
+}
+
+.file-list::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--gray-200);
+  transition: background-color var(--transition-fast);
+  gap: var(--space-2);
+}
+
+.file-item:hover {
+  background-color: var(--white);
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.file-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+/* Progress bar styles now handled by ProgressBar component */
+.file-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.file-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
+}
+
+.file-size {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  background: var(--gray-200);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.file-icon {
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* Empty state */
+.file-list-empty {
+  text-align: center;
+  padding: var(--space-12);
+  color: var(--gray-500);
+}
+
+.file-list-empty .empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.5;
+}
+
+.file-list-empty p {
+  font-size: var(--font-size-lg);
+  margin: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .file-list-container {
+    padding: var(--space-6);
+  }
+
+  .file-item {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .file-info {
+    width: 100%;
+  }
+
+  .file-name {
+    white-space: normal;
+    overflow: visible;
+  }
+
+  .file-meta {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
