@@ -36,22 +36,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '22'
         cache: 'npm'
     
     - name: Install dependencies
@@ -60,14 +51,11 @@ jobs:
     - name: Build application
       run: npm run build
     
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-    
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+    - name: Deploy to Cloudflare Pages
+      uses: cloudflare/pages-action@v1
       with:
-        path: './dist'
-    
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        projectName: yoto-playlist-creator-web
+        directory: dist
+        gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -28,29 +28,21 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   // Check if user is authenticated and token is not expired
   const isAuthenticated = authState.isAuthenticated && !isTokenExpired();
 
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login', { replace: true });
+    }
+  }, [isLoading, isAuthenticated, navigate]);
+
   if (!isAuthenticated) {
-    // Show custom fallback or redirect to login
+    // Show custom fallback or return null while redirecting
     if (fallback) {
       return <>{fallback}</>;
     }
 
-    return (
-      <div className="protected-route-unauthorized">
-        <div className="unauthorized-container">
-          <h2>Authentication Required</h2>
-          <p>You need to be logged in to access this page.</p>
-          <div className="unauthorized-actions">
-            <button 
-              type="button"
-              onClick={() => navigate('/login')}
-              className="btn btn-primary"
-            >
-              Go to Login
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+    // Return null while redirect is happening
+    return null;
   }
 
   // User is authenticated, render protected content
