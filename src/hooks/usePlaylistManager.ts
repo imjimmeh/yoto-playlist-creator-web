@@ -108,7 +108,7 @@ export const usePlaylistManager = (playlistId?: string) => {
     uploadFiles,
     removeTrack: removeUploadedTrack,
     isUploading,
-  } = useFileUploads(settings.yotoAuthToken, onUploadComplete);
+  } = useFileUploads(settings?.yotoAuthToken, onUploadComplete);
 
   const fetchOrInitPlaylist = useCallback(async () => {
     // Don't start fetching until settings have finished loading AND services are ready
@@ -151,7 +151,7 @@ export const usePlaylistManager = (playlistId?: string) => {
     setIsLoading(false);
   }, [
     playlistId,
-    settings.yotoAuthToken,
+    settings?.yotoAuthToken,
     yotoPlaylistService,
     isSettingsLoading,
     servicesReady,
@@ -453,7 +453,7 @@ export const usePlaylistManager = (playlistId?: string) => {
       setError("Playlist data is not available.");
       return;
     }
-    if (!settings.yotoAuthToken) {
+    if (!settings?.yotoAuthToken) {
       setError("Yoto auth token not configured.");
       return;
     }
@@ -484,7 +484,7 @@ export const usePlaylistManager = (playlistId?: string) => {
       );
 
       // For newly created playlists, queue AI icon generation if we have AI config
-      if (isCreateMode && result.data && settings.aiConfig?.apiKey) {
+      if (isCreateMode && result.data && settings?.aiConfig?.apiKey) {
         const newCardId = extractCardIdFromResult(result.data);
         if (newCardId) {
           logger.info(
@@ -497,8 +497,8 @@ export const usePlaylistManager = (playlistId?: string) => {
                 playlistId: newCardId,
                 playlistTitle: playlist.title,
               },
-              settings.yotoAuthToken,
-              settings.aiConfig
+              settings?.yotoAuthToken,
+              settings?.aiConfig
             );
             logger.info("AI icon generation job queued successfully");
           } catch (iconError) {
@@ -544,8 +544,8 @@ export const usePlaylistManager = (playlistId?: string) => {
           playlistId: playlist.cardId,
           playlistTitle: playlist.title,
         },
-        settings.yotoAuthToken,
-        settings.aiConfig
+        settings?.yotoAuthToken,
+        settings?.aiConfig
       );
       // Optionally, provide feedback to the user that the job has been queued.
     } catch (e) {
@@ -563,7 +563,7 @@ export const usePlaylistManager = (playlistId?: string) => {
       setError("Playlist data is not available.");
       return;
     }
-    if (!settings.yotoAuthToken) {
+    if (!settings?.yotoAuthToken) {
       setError("Yoto auth token not configured.");
       return;
     }
@@ -604,7 +604,7 @@ export const usePlaylistManager = (playlistId?: string) => {
       setError("Cannot delete playlist without a saved playlist ID.");
       return;
     }
-    if (!settings.yotoAuthToken) {
+    if (!settings?.yotoAuthToken) {
       setError("Yoto auth token not configured.");
       return;
     }

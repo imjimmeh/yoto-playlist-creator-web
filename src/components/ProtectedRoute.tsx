@@ -14,6 +14,16 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const navigate = useNavigate();
   const { authState, isLoading, isTokenExpired } = useAuth();
 
+  // Check if user is authenticated and token is not expired
+  const isAuthenticated = authState.isAuthenticated && !isTokenExpired();
+
+  // Redirect to login if not authenticated - this must be at the top level
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login', { replace: true });
+    }
+  }, [isLoading, isAuthenticated, navigate]);
+
   // Show loading state while checking authentication
   if (isLoading) {
     return (
@@ -24,16 +34,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
       </div>
     );
   }
-
-  // Check if user is authenticated and token is not expired
-  const isAuthenticated = authState.isAuthenticated && !isTokenExpired();
-
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      navigate('/login', { replace: true });
-    }
-  }, [isLoading, isAuthenticated, navigate]);
 
   if (!isAuthenticated) {
     // Show custom fallback or return null while redirecting
