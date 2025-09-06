@@ -9,3 +9,6 @@ not_found_handling = "single-page-application"
 [observability]
 enabled = true
 head_sampling_rate = 0.1
+
+[vars]
+VITE_YOTO_REDIRECT_URI = "https://yoto-playlist-creator-web.jimmeh.workers.dev/auth/callback"
