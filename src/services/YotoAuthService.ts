@@ -7,10 +7,16 @@ export class YotoAuthService {
 
   private readonly config: OAuth2Config = {
     clientId: "6Sywk5v92ETrGmHf2nv7VOf88XHZwNP1",
-    redirectUri: "http://localhost:3000/auth/callback",
+    redirectUri: import.meta.env.VITE_YOTO_REDIRECT_URI,
     scope: "offline_access",
     audience: "https://api.yotoplay.com",
   };
+
+  constructor() {
+    if (!this.config.redirectUri) {
+      throw new Error("VITE_YOTO_REDIRECT_URI is not set");
+    }
+  }
 
   /**
    * Generate PKCE code challenge and verifier

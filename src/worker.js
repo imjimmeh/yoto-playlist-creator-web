@@ -1,99 +1,101 @@
-import {
-  getAssetFromKV,
-  mapRequestToAsset,
-} from "@cloudflare/kv-asset-handler";
+/**
+ * Simple worker for SPA routing with Cloudflare Workers Assets
+ * This worker handles routing for a React Single Page Application
+ */
+
+const DEBUG = true;
+
+export default {
+  async fetch(request, env, ctx) {
+    try {
+      const url = new URL(request.url);
+      const pathname = url.pathname;
+
+      if (DEBUG) {
+        console.log(`Worker handling request: ${pathname}`);
+      }
+
+      // Try to get the static asset first
+      let response = await env.ASSETS.fetch(request);
+      
+      if (response.status === 404) {
+        // Check if this should be handled by SPA routing
+        const isSPARoute = !pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|txt|xml)$/i);
+        
+        if (isSPARoute) {
+          if (DEBUG) {
+            console.log(`Serving index.html for SPA route: ${pathname}`);
+          }
+          
+          // For SPA routes, serve index.html
+          const indexRequest = new Request(`${url.origin}/index.html`, {
+            method: request.method,
+            headers: request.headers,
+          });
+          
+          response = await env.ASSETS.fetch(indexRequest);
+          
+          if (response.ok) {
+            // Return the index.html with 200 status for SPA routing
+            response = new Response(response.body, {
+              status: 200,
+              headers: response.headers,
+            });
+          }
+        }
+      }
+
+      // Add security headers to all responses
+      const newResponse = new Response(response.body, response);
+      newResponse.headers.set("X-XSS-Protection", "1; mode=block");
+      newResponse.headers.set("X-Content-Type-Options", "nosniff");
+      newResponse.headers.set("X-Frame-Options", "DENY");
+      newResponse.headers.set("Referrer-Policy", "unsafe-url");
+      
+      // Set proper content type based on file extension
+      const contentType = getContentType(pathname);
+      if (contentType && response.ok) {
+        newResponse.headers.set("Content-Type", contentType);
+      }
+
+      if (DEBUG && response.status === 404) {
+        console.log(`404 for: ${pathname}`);
+      }
+
+      return newResponse;
+      
+    } catch (error) {
+      if (DEBUG) {
+        console.error(`Worker error: ${error.message}`);
+        return new Response(`Worker Error: ${error.message}`, { status: 500 });
+      }
+      return new Response("Internal Server Error", { status: 500 });
+    }
+  },
+};
 
 /**
- * The DEBUG flag will do two things that help during development:
- * 1. we will skip caching on the edge, which makes it easier to
- *    debug.
- * 2. we will return an error message on exception in your Response rather
- *    than the default 404.html page.
+ * Get the appropriate MIME type based on file extension
  */
-const DEBUG = false;
-
-addEventListener("fetch", (event) => {
-  try {
-    event.respondWith(handleEvent(event));
-  } catch (e) {
-    if (DEBUG) {
-      return event.respondWith(
-        new Response(e.message || e.toString(), {
-          status: 500,
-        })
-      );
-    }
-    event.respondWith(new Response("Internal Error", { status: 500 }));
-  }
-});
-
-async function handleEvent(event) {
-  const url = new URL(event.request.url);
-  let options = {};
-
-  /**
-   * You can add custom logic to how we fetch your assets
-   * by configuring the function `mapRequestToAsset`
-   */
-  options.mapRequestToAsset = handlePrefix(/^\//);
-
-  try {
-    if (DEBUG) {
-      // customize caching
-      options.cacheControl = {
-        bypassCache: true,
-      };
-    }
-
-    const page = await getAssetFromKV(event, options);
-
-    // allow headers to be altered
-    const response = new Response(page.body, page);
-
-    response.headers.set("X-XSS-Protection", "1; mode=block");
-    response.headers.set("X-Content-Type-Options", "nosniff");
-    response.headers.set("X-Frame-Options", "DENY");
-    response.headers.set("Referrer-Policy", "unsafe-url");
-    response.headers.set("Feature-Policy", "none");
-
-    return response;
-  } catch (e) {
-    // if an error is thrown try to serve the asset at 404.html
-    if (!DEBUG) {
-      try {
-        let notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: (req) =>
-            new Request(`${new URL(req.url).origin}/index.html`, req),
-        });
-
-        return new Response(notFoundResponse.body, {
-          ...notFoundResponse,
-          status: 404,
-        });
-      } catch (e) {}
-    }
-
-    return new Response(e.message || e.toString(), { status: 500 });
-  }
-}
-
-/**
- * Here's one example of how to modify a request to
- * remove a specific prefix, in this case `/docs` from
- * the url. This can be useful if you are deploying to a
- * route on a zone, or if you only want your static content
- * to exist at a specific path.
- */
-function handlePrefix(prefix) {
-  return (request) => {
-    // compute the default (e.g. / -> index.html)
-    let defaultAssetKey = mapRequestToAsset(request);
-    let url = new URL(defaultAssetKey.url);
-
-    // strip the prefix from the path for lookup
-    url.pathname = url.pathname.replace(prefix, "/");
-
-    // inherit all other props from the default request
-    return new Request(url.toString(), defaultAssetKey);
+function getContentType(pathname) {
+  const ext = pathname.split('.').pop()?.toLowerCase();
+  
+  const mimeTypes = {
+    'html': 'text/html',
+    'css': 'text/css',
+    'js': 'application/javascript',
+    'json': 'application/json',
+    'png': 'image/png',
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'gif': 'image/gif',
+    'svg': 'image/svg+xml',
+    'ico': 'image/x-icon',
+    'woff': 'font/woff',
+    'woff2': 'font/woff2',
+    'ttf': 'font/ttf',
+    'eot': 'application/vnd.ms-fontobject'
   };
+  
+  return mimeTypes[ext] || null;
 }
